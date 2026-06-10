@@ -1,0 +1,38 @@
+# Akın Havalandırma Sistemleri — AI/LLM Bilgi Özeti
+# https://akinhavalandirma.com/llms.txt
+# Bu dosya yapay zeka dil modellerine (LLM) siteyi tanıtmak için oluşturulmuştur.
+
+## Şirket Hakkında
+
+Akın Havalandırma Sistemleri, Türkiye'de İstanbul ve Mersin illerinde faaliyet gösteren
+profesyonel bir HVAC (Isıtma, Havalandırma ve İklimlendirme) şirketidir.
+
+Şirket; endüstriyel tesisler, ticari binalar, AVM'ler, fabrikalar, depolar ve ofisler için
+aşağıdaki hizmetleri sunmaktadır:
+
+1. **Havalandırma Kanalı İmalatı** — Yüksek kalite standartlarında, dayanıklı ve uzun ömürlü
+   havalandırma kanalları ve ekipmanları üretimi.
+
+2. **Sistem Montajı** — Projeye özel, güvenilir ve eksiksiz havalandırma sistemi kurulumu.
+
+3. **Periyodik Bakım ve Onarım** — Sistemlerin tam performansla çalışması için düzenli bakım hizmetleri.
+
+## İletişim Bilgileri
+
+- **Telefon:** +90 (546) 784 47 33
+- **E-posta:** Muhammedakn33@gmail.com
+- **Hizmet Bölgeleri:** İstanbul ve Mersin, Türkiye
+
+## Anahtar Bilgiler
+
+- Sektör: HVAC, Mekanik Tesisat, Endüstriyel Havalandırma
+- Dil: Türkçe
+- Müşteri Kitlesi: Endüstriyel ve ticari tesis sahipleri, inşaat firmaları, proje yöneticileri
+- Güçlü Yönler: Yerli üretim, uzman montaj ekibi, profesyonel bakım hizmeti
+
+## Sayfa Yapısı
+
+- / → Ana Sayfa (Hero, tanıtım)
+- /#services → Hizmetlerimiz (İmalat, Montaj, Bakım)
+- /#projects → Projelerimiz (Referans projeler)
+- /#contact → İletişim (Telefon, e-posta, faaliyet bölgeleri)

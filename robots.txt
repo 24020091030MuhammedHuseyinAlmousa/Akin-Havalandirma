@@ -1,0 +1,36 @@
+# robots.txt — Akın Havalandırma Sistemleri
+# https://akinhavalandirma.com/robots.txt
+
+# Tüm arama motorları
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+# Yapay Zeka Tarayıcıları (GPT, Claude, Gemini vb.)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap
+Sitemap: https://akinhavalandirma.com/sitemap.xml
