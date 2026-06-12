@@ -187,3 +187,113 @@ dots.forEach((dot, index) => {
 
 // Delay starting auto slide just to ensure everything is set up
 setTimeout(() => startAutoSlide(AUTO_SLIDE_TIME), 100);
+
+// Theme Toggle Logic
+(() => {
+    // getStoredTheme ve setTheme fonksiyonları index.html <head> kısmında tanımlı
+    // O yüzden burada sadece etkileşim (UI) ve logo güncellemelerini hallediyoruz
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const setStoredTheme = theme => localStorage.setItem('theme', theme);
+    
+    const navbarLogo = document.getElementById('navbar-logo');
+    const footerLogo = document.getElementById('footer-logo');
+
+    const updateLogos = (theme) => {
+        if (theme === 'dark') {
+            if (navbarLogo) navbarLogo.src = 'img/AkinHavalandirmaLogo4dark.webp';
+        } else {
+            if (navbarLogo) navbarLogo.src = 'img/AkinHavalandirmaLogo4light.webp';
+        }
+    };
+
+    const getPreferredTheme = () => {
+        const storedTheme = getStoredTheme();
+        if (storedTheme) {
+            return storedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    const setTheme = theme => {
+        let appliedTheme = theme;
+        if (theme === 'auto') {
+            appliedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', appliedTheme);
+        updateLogos(appliedTheme);
+    };
+
+    const showActiveTheme = (theme) => {
+        const activeThemeIcon = document.querySelector('.theme-toggle-btn .theme-icon-active use');
+        const btnToActive = document.querySelector(`[data-theme-value="${theme}"]`);
+        
+        if (!btnToActive || !activeThemeIcon) return;
+
+        const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href');
+
+        document.querySelectorAll('[data-theme-value]').forEach(element => {
+            element.classList.remove('active');
+        });
+
+        btnToActive.classList.add('active');
+        activeThemeIcon.setAttribute('href', svgOfActiveBtn);
+    };
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const storedTheme = getStoredTheme();
+        if (storedTheme !== 'light' && storedTheme !== 'dark') {
+            setTheme(getPreferredTheme());
+            showActiveTheme('auto');
+        } else {
+            updateLogos(storedTheme);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        // İlk yüklemede logoları da güncelle
+        const initialTheme = getStoredTheme() || 'auto';
+        const appliedTheme = initialTheme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : initialTheme;
+        setTheme(initialTheme); // Temayı DOM'a uygula
+        updateLogos(appliedTheme);
+        showActiveTheme(initialTheme);
+
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeDropdown = document.getElementById('theme-dropdown');
+
+        if(themeToggleBtn && themeDropdown) {
+            themeToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                themeDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!themeDropdown.contains(e.target) && !themeToggleBtn.contains(e.target)) {
+                    themeDropdown.classList.remove('show');
+                }
+            });
+
+            document.querySelectorAll('[data-theme-value]').forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const theme = toggle.getAttribute('data-theme-value');
+                    setStoredTheme(theme);
+                    setTheme(theme);
+                    showActiveTheme(theme);
+                    themeDropdown.classList.remove('show');
+                });
+            });
+        }
+        
+        // --- Anti-Spam E-Posta Koruması ---
+        document.querySelectorAll('.protected-email').forEach(link => {
+            const u = link.getAttribute('data-u');
+            const d = link.getAttribute('data-d');
+            if (u && d) {
+                // E-postayı dinamik olarak birleştir
+                const email = u + '@' + d;
+                link.setAttribute('href', 'mailto:' + email);
+                link.textContent = email;
+            }
+        });
+        
+    });
+})();

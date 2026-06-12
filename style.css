@@ -7,11 +7,26 @@
     --bg-light: #f8fafc;
     --bg-white: #ffffff;
     --navbar-bg: rgba(255, 255, 255, 0.95);
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --card-border: 1px solid rgba(0, 0, 0, 0.05);
     --transition: all 0.3s ease;
     --section-padding: 8vh 5%;
+}
+
+:root[data-theme="dark"] {
+    --primary-color: #38bdf8;
+    --primary-dark: #0c4a6e; /* Daha tok bir lacivert (İletişim kutusu için) */
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1; /* Daha okunabilir gri */
+    --bg-light: #020617; /* Gece mavisi / Çok koyu arka plan */
+    --bg-white: #0f172a; /* Kartlar için biraz daha açık lacivert */
+    --navbar-bg: rgba(2, 6, 23, 0.75); /* Daha şeffaf glass efekti */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.8);
+    --shadow-hover: 0 0 30px rgba(56, 189, 248, 0.15), 0 10px 15px -3px rgba(0, 0, 0, 0.8); /* Kartlara mavi parlama efekti */
+    --card-border: 1px solid rgba(255, 255, 255, 0.05); /* Premium ince kenarlık */
 }
 
 /* Genel Sıfırlama */
@@ -32,6 +47,9 @@ body {
     background-color: var(--bg-light);
     line-height: 1.6;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -207,7 +225,8 @@ body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: var(--card-border);
     display: flex;
     flex-direction: column;
 }
@@ -390,6 +409,8 @@ footer {
     color: #94a3b8;
     text-align: center;
     padding: 2rem 5%;
+    margin-top: auto;
+    width: 100%;
 }
 
 .footer-logo {
@@ -461,4 +482,86 @@ footer {
     .section {
         scroll-margin-top: 65px;
     }
+}
+
+/* Tema Değiştirici (Theme Toggle) */
+.theme-toggle-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1500;
+}
+.theme-toggle-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+.theme-toggle-btn:hover {
+    background-color: var(--primary-dark);
+}
+.theme-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+.theme-dropdown {
+    position: absolute;
+    bottom: 55px;
+    right: 0;
+    background-color: var(--bg-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    min-width: 140px;
+    border: var(--card-border);
+}
+.theme-dropdown.show {
+    display: flex;
+}
+.theme-dropdown button {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+.theme-dropdown button:hover {
+    background-color: var(--bg-light);
+}
+.theme-dropdown button.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.theme-dropdown button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    opacity: 0.7;
+}
+.theme-dropdown button.active svg {
+    opacity: 1;
+}
+.theme-dropdown .check-icon {
+    margin-left: auto;
+    display: none;
+}
+.theme-dropdown button.active .check-icon {
+    display: block;
 }
