@@ -109,14 +109,24 @@
         "@context": "https://schema.org",
         "@graph": [
             {
-                "@type": "LocalBusiness",
+                "@type": ["Organization", "LocalBusiness"],
                 "@id": "https://akinhavalandirma.com/#business",
                 "name": "Akın Havalandırma Sistemleri",
                 "alternateName": "Akin Havalandirma",
                 "description": "Endüstriyel ve ticari tesisler için havalandırma kanalı imalatı, sistem montajı ve periyodik bakım hizmetleri sunan profesyonel HVAC şirketi.",
                 "url": "https://akinhavalandirma.com",
-                "logo": "https://akinhavalandirma.com/img/AkinHavalandirmaLogo4dark.webp",
-                "image": "https://akinhavalandirma.com/img/hero_bg.webp",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://akinhavalandirma.com/img/AkinHavalandirmaLogo4dark.webp",
+                    "width": 571,
+                    "height": 158
+                },
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://akinhavalandirma.com/img/hero_bg.webp",
+                    "width": 1200,
+                    "height": 630
+                },
                 "telephone": "+90-546-784-47-33",
                 "areaServed": [
                     {
